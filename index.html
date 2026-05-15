@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+</head>
+<body>
+
+    <div id="toast-container"></div>
+
+    <div id="profile-screen">
+        <div class="profile-logo">
+            <span class="logo-text" aria-label="Netflix">NETFLIX</span>
+        </div>
+        <h1>Who's watching?</h1>
+        <div id="profile-grid" class="profile-list"></div>
+    </div>
+
+    <div id="app" class="hidden">
+        <nav id="navbar">
+            <div class="nav-left">
+                <span class="logo-text nav-logo" aria-label="Netflix Home" onclick="goHome(event)">NETFLIX</span>
+                <div class="nav-links">
+                    <a href="#" class="active" onclick="goHome(event)">Home</a>
+                    <a href="#" onclick="filterCategory(event, 'Series')">TV Shows</a>
+                    <a href="#" onclick="filterCategory(event, 'Movies')">Movies</a>
+                    <a href="#" onclick="filterCategory(event, 'New')">New & Popular</a>
+                    <a href="#" onclick="showMyList(event)">My List</a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="search-box" id="search-box">
+                    <button onclick="toggleSearch()" aria-label="Open search"><iconify-icon icon="lucide:search"></iconify-icon></button>
+                    <input type="text" id="search-input" placeholder="Titles, people, genres" oninput="handleSearch(this.value)" aria-label="Search">
+                </div>
+                <button class="notif-btn" onclick="toggleNotifications()" aria-label="Notifications">
+                    <iconify-icon icon="lucide:bell"></iconify-icon>
+                    <span class="notif-badge">4</span>
+                </button>
+                <div class="profile-menu-container">
+                    <button onclick="toggleProfileMenu()" class="profile-btn" aria-label="Profile menu">
+                        <img id="nav-avatar" src="" alt="Profile">
+                        <iconify-icon icon="lucide:caret-down"></iconify-icon>
+                    </button>
+                    <div id="profile-dropdown" class="dropdown-menu hidden"></div>
+                </div>
+            </div>
+        </nav>
+
+        <section id="billboard">
+            <div class="billboard-bg"></div>
+            <div class="billboard-gradient"></div>
+            <div class="billboard-content">
+                <div class="billboard-title"></div>
+                <div class="billboard-meta"></div>
+                <div class="billboard-description"></div>
+                <div class="billboard-buttons"></div>
+            </div>
+            <button class="billboard-mute" onclick="toggleMute()" aria-label="Toggle mute">
+                <span id="mute-icon" data-muted="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                </span>
+            </button>
+        </section>
+
+        <main id="main-content"></main>
+    </div>
+
+    <div id="detail-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-hero">
+                <img id="modal-img" src="" alt="Movie Preview">
+                <div class="modal-hero-gradient"></div>
+                <button class="modal-close" onclick="closeModal()" aria-label="Close"><iconify-icon icon="lucide:x"></iconify-icon></button>
+                <div class="modal-hero-content">
+                    <h2 id="modal-title"></h2>
+                    <div class="modal-actions">
+                        <button class="btn-play" onclick="playVideo()"><iconify-icon icon="lucide:play"></iconify-icon> Play</button>
+                        <button id="modal-list-btn" onclick="toggleMyList(currentModalMovie.id)" aria-label="Add to My List"><iconify-icon icon="lucide:plus"></iconify-icon></button>
+                        <button id="modal-like-btn" onclick="toggleLike()" aria-label="Like"><iconify-icon icon="lucide:thumbs-up"></iconify-icon></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-meta"></div>
+                <div class="modal-desc"></div>
+                <div class="modal-cast"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="video-player" class="hidden">
+        <img id="player-img" src="" alt="Video playback">
+        <div class="player-controls">
+            <input type="range" id="player-progress" min="0" max="100" value="0" aria-label="Progress">
+            <div class="player-btns">
+                <button onclick="skipBack()" aria-label="Rewind"><iconify-icon icon="lucide:skip-back"></iconify-icon></button>
+                <button id="play-pause-btn" onclick="togglePlayPause()" aria-label="Play/Pause"><iconify-icon icon="lucide:pause"></iconify-icon></button>
+                <button onclick="skipForward()" aria-label="Fast Forward"><iconify-icon icon="lucide:skip-forward"></iconify-icon></button>
+                <div class="player-right">
+                    <button onclick="toggleMute()" aria-label="Volume"><iconify-icon icon="lucide:volume-2"></iconify-icon></button>
+                    <button onclick="closePlayer()" aria-label="Exit"><iconify-icon icon="lucide:x"></iconify-icon> Exit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
