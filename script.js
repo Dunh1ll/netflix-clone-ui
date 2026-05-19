@@ -27,7 +27,7 @@ const MOVIES = [
 const ROWS = [
     { title:'Continue Watching for You', filter:m=>[1,3,5,8].includes(m.id) },
     { title:'Top 10 in Your Country Today', filter:m=>m.match>=94, isTop10:true },
-    { title:'Popular on Netflix', filter:m=>m.match>=90 },
+    { title:'Popular on Netfflix', filter:m=>m.match>=90 },
     { title:'Trending Now', filter:m=>m.isNew },
     { title:'TV Shows', filter:m=>m.category==='Series' },
     { title:'Movies', filter:m=>m.category==='Movies' },
@@ -407,7 +407,7 @@ function toggleProfileMenu() {
             <button class="dropdown-item" onclick="document.getElementById('profile-dropdown').classList.add('hidden')"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon> Manage Profiles</button>
             <button class="dropdown-item" onclick="document.getElementById('profile-dropdown').classList.add('hidden')"><iconify-icon icon="lucide:settings" aria-hidden="true"></iconify-icon> Account</button>
             <div class="dropdown-divider"></div>
-            <button class="dropdown-item" onclick="signOut()"><iconify-icon icon="lucide:log-out" aria-hidden="true"></iconify-icon> Sign out of Netflix</button>
+            <button class="dropdown-item" onclick="signOut()"><iconify-icon icon="lucide:log-out" aria-hidden="true"></iconify-icon> Sign out of Netfflix</button>
         `;
     }
 }
